@@ -1,0 +1,363 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Online Student Course Registration</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f4f6fb;
+    color: #222;
+}
+
+/* Navigation */
+header {
+    background: #172554;
+    color: white;
+    padding: 20px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+header h2 {
+    font-size: 23px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 22px;
+    font-weight: bold;
+}
+
+/* Hero section */
+.hero {
+    background: linear-gradient(120deg, #1e40af, #6366f1);
+    color: white;
+    text-align: center;
+    padding: 65px 20px;
+}
+
+.hero h1 {
+    font-size: 36px;
+    margin-bottom: 15px;
+}
+
+.hero p {
+    font-size: 17px;
+}
+
+/* Main content */
+.container {
+    width: 90%;
+    max-width: 1150px;
+    margin: 35px auto;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #172554;
+}
+
+/* Search */
+.search-box {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.search-box input {
+    width: 80%;
+    max-width: 500px;
+    padding: 13px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+/* Course cards */
+.course-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+.course-card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+
+.course-card:hover {
+    transform: translateY(-5px);
+}
+
+.course-card h3 {
+    color: #1d4ed8;
+    margin-bottom: 12px;
+}
+
+.course-card p {
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+
+.course-card button {
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 11px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.course-card button:hover {
+    background: #1e40af;
+}
+
+.course-card button:disabled {
+    background: #16a34a;
+    cursor: default;
+}
+
+/* Registered courses */
+.registered {
+    background: white;
+    padding: 25px;
+    margin-top: 40px;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+}
+
+.registered h2 {
+    color: #172554;
+    margin-bottom: 15px;
+}
+
+.registered li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Footer */
+footer {
+    background: #172554;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 45px;
+}
+
+@media(max-width:600px) {
+    header {
+        gap: 15px;
+    }
+
+    nav a {
+        margin: 5px;
+        display: inline-block;
+    }
+
+    .hero h1 {
+        font-size: 27px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Navigation -->
+<header>
+    <h2>SR University</h2>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#courses">Courses</a>
+        <a href="#registered">My Courses</a>
+    </nav>
+</header>
+
+<!-- Home -->
+<section class="hero" id="home">
+    <h1>Online Student Course Registration</h1>
+    <p>Explore courses, choose your subjects and register online.</p>
+</section>
+
+<!-- Available Courses -->
+<div class="container" id="courses">
+
+    <h2 class="section-title">Available Courses</h2>
+
+    <div class="search-box">
+        <input
+            type="text"
+            id="search"
+            placeholder="Search courses by name..."
+            onkeyup="searchCourses()">
+    </div>
+
+    <div class="course-list" id="courseList">
+
+        <div class="course-card" data-name="python programming">
+            <h3>Python Programming</h3>
+            <p><b>Description:</b> Learn Python basics, functions,
+            loops and object-oriented programming.</p>
+            <p><b>Duration:</b> 12 Weeks</p>
+            <button onclick="registerCourse('Python Programming', this)">
+                Register Now
+            </button>
+        </div>
+
+        <div class="course-card" data-name="web development">
+            <h3>Web Development</h3>
+            <p><b>Description:</b> Learn HTML, CSS and JavaScript
+            to develop interactive websites.</p>
+            <p><b>Duration:</b> 16 Weeks</p>
+            <button onclick="registerCourse('Web Development', this)">
+                Register Now
+            </button>
+        </div>
+
+        <div class="course-card" data-name="machine learning">
+            <h3>Machine Learning</h3>
+            <p><b>Description:</b> Understand machine learning
+            algorithms and predictive models.</p>
+            <p><b>Duration:</b> 14 Weeks</p>
+            <button onclick="registerCourse('Machine Learning', this)">
+                Register Now
+            </button>
+        </div>
+
+        <div class="course-card" data-name="data science">
+            <h3>Data Science</h3>
+            <p><b>Description:</b> Learn data analysis,
+            visualization and statistical techniques.</p>
+            <p><b>Duration:</b> 12 Weeks</p>
+            <button onclick="registerCourse('Data Science', this)">
+                Register Now
+            </button>
+        </div>
+
+        <div class="course-card" data-name="database management">
+            <h3>Database Management</h3>
+            <p><b>Description:</b> Learn SQL, database design,
+            queries and data management.</p>
+            <p><b>Duration:</b> 10 Weeks</p>
+            <button onclick="registerCourse('Database Management', this)">
+                Register Now
+            </button>
+        </div>
+
+        <div class="course-card" data-name="cloud computing">
+            <h3>Cloud Computing</h3>
+            <p><b>Description:</b> Understand cloud platforms,
+            services and deployment concepts.</p>
+            <p><b>Duration:</b> 14 Weeks</p>
+            <button onclick="registerCourse('Cloud Computing', this)">
+                Register Now
+            </button>
+        </div>
+
+    </div>
+</div>
+
+<!-- Registered Courses -->
+<div class="container" id="registered">
+    <div class="registered">
+        <h2>My Registered Courses</h2>
+
+        <ul id="registeredList">
+            <li>No courses registered yet.</li>
+        </ul>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer>
+    <p>© 2026 SR University | Online Course Registration System</p>
+    <p>Designed for Students</p>
+</footer>
+
+<script>
+
+// Store registered courses
+let registeredCourses = [];
+
+function registerCourse(course, button) {
+
+    if (registeredCourses.includes(course)) {
+        alert("You have already registered for this course!");
+        return;
+    }
+
+    registeredCourses.push(course);
+
+    button.innerText = "Registered";
+    button.disabled = true;
+
+    updateRegisteredList();
+
+    alert("Successfully registered for " + course);
+}
+
+// Display registered courses
+function updateRegisteredList() {
+
+    let list = document.getElementById("registeredList");
+
+    list.innerHTML = "";
+
+    registeredCourses.forEach(function(course) {
+
+        let li = document.createElement("li");
+
+        li.textContent = course;
+
+        list.appendChild(li);
+
+    });
+
+    if (registeredCourses.length === 0) {
+        list.innerHTML = "<li>No courses registered yet.</li>";
+    }
+}
+
+// Search courses
+function searchCourses() {
+
+    let input = document.getElementById("search")
+        .value.toLowerCase();
+
+    let cards = document.querySelectorAll(".course-card");
+
+    cards.forEach(function(card) {
+
+        let name = card.getAttribute("data-name");
+
+        if (name.includes(input)) {
+            card.style.display = "block";
+        } else {
+            card.style.display = "none";
+        }
+
+    });
+}
+
+</script>
+
+</body>
+</html>
